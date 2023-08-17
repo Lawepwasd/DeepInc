@@ -9,5 +9,3 @@ tools/pybind11_2_3_0.tar.gz
 latex/
 .idea/
 build
-resources/nnet/coav
-resources/nnet/

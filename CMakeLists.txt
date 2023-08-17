@@ -26,7 +26,7 @@ endif()
 
 set(MARABOU_LIB MarabouHelper)
 set(MARABOU_TEST_LIB MarabouHelperTest)
-set(MARABOU_EXE Marabou${CMAKE_EXECUTABLE_SUFFIX})
+set(MARABOU_EXE DeepInc${CMAKE_EXECUTABLE_SUFFIX})
 set(MARABOU_PY MarabouCore)
 
 set(DEPS_DIR "${PROJECT_SOURCE_DIR}/deps")
