@@ -1,0 +1,45 @@
+# Example of verification of a Pytorch model with general VNNLIB specification.
+#
+# python abcrown.py --load_model models/cifar10_resnet/resnet2b.pth \
+#                  --model resnet2b \
+#                  --vnnlib_path ../../vnncomp2021/benchmarks/cifar2020/specs/cifar10/cifar10_spec_idx_0_eps_0.00784_n1.vnnlib \
+#                  --input_shape -1 3 32 32
+general:
+  device: cpu
+  enable_incomplete_verification: False
+  save_adv_example: true
+  random: 0.001
+  data: 19
+model:
+  name: Customized("custom_model_data", "acasxu_model_perturb", fpath="ACASXU_experimental_v2a_perturb_rate0.001_5_2.nnet")
+  input_shape: [-1, 5]
+# model:
+#   name: resnet2b  # This model is defined in model_defs.py. Add your own model definitions there.
+#   path: models/cifar10_resnet/resnet2b.pth  # Path to PyTorch checkpoint.
+#     # vnnlib does not have input shape information, user should specify here
+specification:
+  type: bound
+  # VNNLIB file specification.
+  vnnlib_path: /home/chizm/alpha-beta-CROWN/complete_verifier/vnnlib_script/5_2_data19.vnnlib
+solver:
+  batch_size: 1  # Number of parallel domains to compute on GPU.
+  bound_prop_method: crown
+  beta-crown:
+    iteration: 10  # Iterations for computing intermediate layer bounds.
+  alpha-crown:
+    iteration: 10
+    share_slopes: True  # This produces slightly looser bounds, but faster.
+bab:
+  timeout: 20000
+  branching:
+    method: sb  # Split on input space.
+    candidates: 3
+    input_split:
+      enable: True
+      enhanced_bound_prop_method: alpha-crown
+      enhanced_bound_patience: 20
+      adv_check: 2000000000
+      # attack_patience: 80
+attack:
+  # pgd_order: after
+  pgd_order: skip

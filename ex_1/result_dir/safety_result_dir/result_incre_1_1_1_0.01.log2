@@ -1,0 +1,7 @@
+Network: finally_experiment/ex_1/nnet/ranweight/ACASXU_experimental_v2a_perturb_rate0.01_1_1.nnet
+Number of layers: 8. Input layer size: 5. Output layer size: 5. Number of ReLUs: 300
+Total number of variables: 610
+Property: finally_experiment/properties/acas_property_1.txt
+
+Error: the specified network seach tree file (finally_experiment/ex_1/search_tree/safety_tree/ACASXU_experimental_v2a_1_1_property_1.nnet.searchTree) doesn't exist!
+Caught a MarabouError error. Code: 15, Errno: 2, Message: finally_experiment/ex_1/search_tree/safety_tree/ACASXU_experimental_v2a_1_1_property_1.nnet.searchTree.
